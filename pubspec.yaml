@@ -1,0 +1,48 @@
+name: public_complaint_app
+description: Public Complaint App
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # Firebase
+  firebase_core: ^4.2.0
+  firebase_auth: ^6.1.1
+  cloud_firestore: ^6.0.3
+  firebase_storage: ^13.0.3
+
+  # UI & State Management
+  provider: ^6.1.2
+
+  # Media & Location
+  image_picker: ^1.1.2
+  geolocator: ^14.0.2
+  geocoding: ^4.0.0
+
+  # Preferences
+  shared_preferences: ^2.3.2
+
+  # Permissions
+  permission_handler: ^12.0.1
+
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+ 
