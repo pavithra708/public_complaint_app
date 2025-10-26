@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+//import '../../l10n/app_localizations.dart';  // For files in screens/
 import '../models/complaint_model.dart';
 import '../services/complaint_service.dart';
+import 'package:public_complaint_app/generated/app_localizations.dart';
+
 
 class ComplaintDetailsScreen extends StatelessWidget {
   final Complaint complaint;
 
+
   const ComplaintDetailsScreen({Key? key, required this.complaint}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final complaintService = ComplaintService();
+
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Complaint Details'),
+        title: Text(l10n.complaintDetails),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -25,23 +32,23 @@ class ComplaintDetailsScreen extends StatelessWidget {
               _handleMenuAction(value, context, complaintService);
             },
             itemBuilder: (BuildContext context) => [
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'edit',
                 child: Row(
                   children: [
-                    Icon(Icons.edit, size: 20),
-                    SizedBox(width: 8),
-                    Text('Edit Complaint'),
+                    const Icon(Icons.edit, size: 20),
+                    const SizedBox(width: 8),
+                    Text(l10n.editComplaint),
                   ],
                 ),
               ),
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'delete',
                 child: Row(
                   children: [
-                    Icon(Icons.delete, color: Colors.red, size: 20),
-                    SizedBox(width: 8),
-                    Text('Delete Complaint', style: TextStyle(color: Colors.red)),
+                    const Icon(Icons.delete, color: Colors.red, size: 20),
+                    const SizedBox(width: 8),
+                    Text(l10n.deleteComplaint, style: const TextStyle(color: Colors.red)),
                   ],
                 ),
               ),
@@ -55,7 +62,7 @@ class ComplaintDetailsScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Header with Status
-            _buildStatusHeader(),
+            _buildStatusHeader(context),
             
             const SizedBox(height: 20),
             
@@ -65,24 +72,25 @@ class ComplaintDetailsScreen extends StatelessWidget {
             const SizedBox(height: 20),
             
             // Location Section
-            if (complaint.hasLocation) _buildLocationSection(),
+            if (complaint.hasLocation) _buildLocationSection(context),
             
             const SizedBox(height: 20),
             
             // Image Section
-            if (complaint.hasImage) _buildImageSection(),
+            if (complaint.hasImage) _buildImageSection(context),
             
             const SizedBox(height: 20),
             
             // Metadata
-            _buildMetadataSection(),
+            _buildMetadataSection(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildStatusHeader() {
+
+  Widget _buildStatusHeader(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -124,6 +132,7 @@ class ComplaintDetailsScreen extends StatelessWidget {
       ),
     );
   }
+
 
   Widget _buildComplaintDetails() {
     return Card(
@@ -175,20 +184,23 @@ class ComplaintDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildLocationSection() {
+
+  Widget _buildLocationSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
-                Icon(Icons.location_on, color: Colors.blue),
-                SizedBox(width: 8),
+                const Icon(Icons.location_on, color: Colors.blue),
+                const SizedBox(width: 8),
                 Text(
-                  'Location',
-                  style: TextStyle(
+                  l10n.location,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -208,20 +220,23 @@ class ComplaintDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildImageSection() {
+
+  Widget _buildImageSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Row(
+            Row(
               children: [
-                Icon(Icons.photo, color: Colors.green),
-                SizedBox(width: 8),
+                const Icon(Icons.photo, color: Colors.green),
+                const SizedBox(width: 8),
                 Text(
-                  'Attached Photo',
-                  style: TextStyle(
+                  l10n.attachedPhoto,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -256,12 +271,12 @@ class ComplaintDetailsScreen extends StatelessWidget {
                   errorBuilder: (context, error, stackTrace) {
                     return Container(
                       color: Colors.grey[200],
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.broken_image, size: 40, color: Colors.grey),
-                          SizedBox(height: 8),
-                          Text('Failed to load image'),
+                          const Icon(Icons.broken_image, size: 40, color: Colors.grey),
+                          const SizedBox(height: 8),
+                          Text(l10n.failedToLoadImage),
                         ],
                       ),
                     );
@@ -275,31 +290,35 @@ class ComplaintDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildMetadataSection() {
+
+  Widget _buildMetadataSection(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Complaint Information',
-              style: TextStyle(
+            Text(
+              l10n.complaintInformation,
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 12),
-            _buildInfoRow('Filed by', complaint.userName ?? complaint.userEmail),
-            _buildInfoRow('Filed on', _formatDate(complaint.createdAt)),
+            _buildInfoRow(l10n.filedBy, complaint.userName ?? complaint.userEmail),
+            _buildInfoRow(l10n.filedOn, _formatDate(complaint.createdAt)),
             if (complaint.updatedAt != null)
-              _buildInfoRow('Last updated', _formatDate(complaint.updatedAt!)),
-            _buildInfoRow('Complaint ID', complaint.id ?? 'N/A'),
+              _buildInfoRow(l10n.lastUpdated, _formatDate(complaint.updatedAt!)),
+            _buildInfoRow(l10n.complaintId, complaint.id ?? 'N/A'),
           ],
         ),
       ),
     );
   }
+
 
   Widget _buildInfoRow(String label, String value) {
     return Padding(
@@ -323,15 +342,19 @@ class ComplaintDetailsScreen extends StatelessWidget {
     );
   }
 
+
   String _formatDate(DateTime date) {
     return '${date.day}/${date.month}/${date.year} at ${date.hour}:${date.minute.toString().padLeft(2, '0')}';
   }
 
+
   void _handleMenuAction(String value, BuildContext context, ComplaintService complaintService) {
+    final l10n = AppLocalizations.of(context)!;
+    
     switch (value) {
       case 'edit':
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Edit feature coming soon!')),
+          SnackBar(content: Text(l10n.comingSoon)),
         );
         break;
       case 'delete':
@@ -340,36 +363,44 @@ class ComplaintDetailsScreen extends StatelessWidget {
     }
   }
 
+
   void _showDeleteDialog(BuildContext context, ComplaintService complaintService) {
+    final l10n = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Delete Complaint'),
-          content: const Text('Are you sure you want to delete this complaint? This action cannot be undone.'),
+          title: Text(l10n.deleteComplaint),
+          content: Text(l10n.deleteComplaintConfirmation),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
+              child: Text(l10n.cancel),
             ),
             TextButton(
               onPressed: () async {
                 Navigator.pop(context);
                 try {
-                  await complaintService.deleteComplaint(complaint.id!, complaint.imageUrl);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Complaint deleted successfully')),
-                  );
-                  Navigator.pop(context); // Go back to dashboard
+                  // FIXED: Only pass complaint ID
+                  await complaintService.deleteComplaint(complaint.id!);
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(l10n.complaintDeletedSuccess)),
+                    );
+                    Navigator.pop(context); // Go back to dashboard
+                  }
                 } catch (e) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Failed to delete complaint: $e')),
-                  );
+                  if (context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('${l10n.failedToDelete}: $e')),
+                    );
+                  }
                 }
               },
-              child: const Text(
-                'Delete',
-                style: TextStyle(color: Colors.red),
+              child: Text(
+                l10n.delete,
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           ],

@@ -1,25 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:public_complaint_app/generated/app_localizations.dart';
+//import '../../l10n/app_localizations.dart';  // For files in screens/
 import '../services/complaint_service.dart';
 import '../services/auth_service.dart';
 import '../models/complaint_model.dart';
 import 'file_complaint_screen.dart';
 import 'profile_screen.dart';
 import 'all_complaints_screen.dart';
-import 'complaint_details_screen.dart'; // Add this import
+import 'complaint_details_screen.dart';
+
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final complaintService = ComplaintService();
     final authService = Provider.of<AuthService>(context);
 
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: Text(l10n.dashboard),
         actions: [
           IconButton(
             icon: const Icon(Icons.person),
@@ -38,7 +45,7 @@ class DashboardScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Welcome section with stats
-            _buildWelcomeSection(authService, complaintService),
+            _buildWelcomeSection(context, authService, complaintService),
             
             const SizedBox(height: 20),
             
@@ -47,13 +54,13 @@ class DashboardScreen extends StatelessWidget {
             
             const SizedBox(height: 20),
             
-            const Text(
-              'My Complaints',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            Text(
+              l10n.myComplaints,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             
-            // Real complaints list - FIXED: Removed Expanded from here
+            // Real complaints list
             StreamBuilder<List<Complaint>>(
               stream: complaintService.getUserComplaints(),
               builder: (context, snapshot) {
@@ -62,13 +69,13 @@ class DashboardScreen extends StatelessWidget {
                 }
                 
                 if (snapshot.hasError) {
-                  return _buildErrorWidget(snapshot.error.toString());
+                  return _buildErrorWidget(context, snapshot.error.toString());
                 }
                 
                 final complaints = snapshot.data ?? [];
                 
                 if (complaints.isEmpty) {
-                  return _buildEmptyState();
+                  return _buildEmptyState(context);
                 }
                 
                 return _buildComplaintsList(complaints);
@@ -90,8 +97,11 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+
   // Welcome section with user stats
-  Widget _buildWelcomeSection(AuthService authService, ComplaintService complaintService) {
+  Widget _buildWelcomeSection(BuildContext context, AuthService authService, ComplaintService complaintService) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return StreamBuilder<List<Complaint>>(
       stream: complaintService.getUserComplaints(),
       builder: (context, snapshot) {
@@ -99,17 +109,18 @@ class DashboardScreen extends StatelessWidget {
         final pendingCount = complaints.where((c) => c.status == 'Pending').length;
         final resolvedCount = complaints.where((c) => c.status == 'Resolved').length;
 
+
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Welcome, ${authService.user?.displayName ?? 'User'}! 👋',
+              '${l10n.welcome}, ${authService.user?.displayName ?? l10n.user}! 👋',
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Here are your recent complaints',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            Text(
+              l10n.recentComplaints,
+              style: const TextStyle(fontSize: 16, color: Colors.grey),
             ),
             const SizedBox(height: 16),
             
@@ -117,21 +128,21 @@ class DashboardScreen extends StatelessWidget {
             Row(
               children: [
                 _buildStatCard(
-                  'Total',
+                  l10n.total,
                   complaints.length.toString(),
                   Colors.blue,
                   Icons.report_problem,
                 ),
                 const SizedBox(width: 12),
                 _buildStatCard(
-                  'Pending',
+                  l10n.pending,
                   pendingCount.toString(),
                   Colors.orange,
                   Icons.access_time,
                 ),
                 const SizedBox(width: 12),
                 _buildStatCard(
-                  'Resolved',
+                  l10n.resolved,
                   resolvedCount.toString(),
                   Colors.green,
                   Icons.check_circle,
@@ -143,6 +154,7 @@ class DashboardScreen extends StatelessWidget {
       },
     );
   }
+
 
   // Stat card widget
   Widget _buildStatCard(String title, String value, Color color, IconData icon) {
@@ -186,21 +198,24 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+
   // Quick actions section
   Widget _buildQuickActions(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Quick Actions',
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          l10n.quickActions,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 12),
         Row(
           children: [
             Expanded(
               child: _buildActionButton(
-                'File Complaint',
+                l10n.fileComplaint,
                 Icons.add,
                 Colors.blue,
                 () {
@@ -214,7 +229,7 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: _buildActionButton(
-                'View All',
+                l10n.viewAll,
                 Icons.list,
                 Colors.green,
                 () {
@@ -231,6 +246,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+
   // Action button widget
   Widget _buildActionButton(String text, IconData icon, Color color, VoidCallback onPressed) {
     return ElevatedButton.icon(
@@ -245,9 +261,12 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+
   // Error widget
-  Widget _buildErrorWidget(String error) {
-    return Container(
+  Widget _buildErrorWidget(BuildContext context, String error) {
+    final l10n = AppLocalizations.of(context)!;
+    
+    return SizedBox(
       height: 200,
       child: Center(
         child: Column(
@@ -255,9 +274,9 @@ class DashboardScreen extends StatelessWidget {
           children: [
             const Icon(Icons.error_outline, size: 64, color: Colors.red),
             const SizedBox(height: 16),
-            const Text(
-              'Error loading complaints',
-              style: TextStyle(fontSize: 18, color: Colors.red),
+            Text(
+              l10n.errorLoadingComplaints,
+              style: const TextStyle(fontSize: 18, color: Colors.red),
             ),
             const SizedBox(height: 8),
             Padding(
@@ -271,10 +290,10 @@ class DashboardScreen extends StatelessWidget {
             const SizedBox(height: 16),
             ElevatedButton.icon(
               onPressed: () {
-                // You could add retry logic here
+                // Retry logic here
               },
               icon: const Icon(Icons.refresh),
-              label: const Text('Try Again'),
+              label: Text(l10n.tryAgain),
             ),
           ],
         ),
@@ -282,9 +301,12 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+
   // Empty state widget
-  Widget _buildEmptyState() {
-    return Container(
+  Widget _buildEmptyState(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
+    return SizedBox(
       height: 300,
       child: Center(
         child: Column(
@@ -292,16 +314,16 @@ class DashboardScreen extends StatelessWidget {
           children: [
             Icon(Icons.report_problem, size: 80, color: Colors.grey[400]),
             const SizedBox(height: 20),
-            const Text(
-              'No complaints yet',
-              style: TextStyle(fontSize: 20, color: Colors.grey, fontWeight: FontWeight.bold),
+            Text(
+              l10n.noComplaints,
+              style: const TextStyle(fontSize: 20, color: Colors.grey, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Text(
-                'Start by filing your first complaint to help improve your community',
-                style: TextStyle(color: Colors.grey),
+                l10n.noComplaintsDesc,
+                style: const TextStyle(color: Colors.grey),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -314,13 +336,14 @@ class DashboardScreen extends StatelessWidget {
                 );
               },
               icon: const Icon(Icons.add),
-              label: const Text('File Your First Complaint'),
+              label: Text(l10n.fileFirstComplaint),
             ),
           ],
         ),
       ),
     );
   }
+
 
   // Complaints list builder
   Widget _buildComplaintsList(List<Complaint> complaints) {
@@ -330,10 +353,13 @@ class DashboardScreen extends StatelessWidget {
   }
 }
 
+
 class ComplaintCard extends StatelessWidget {
   final Complaint complaint;
 
+
   const ComplaintCard({Key? key, required this.complaint}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -461,7 +487,7 @@ class ComplaintCard extends StatelessWidget {
                   // Spacer
                   const Spacer(),
                   
-                  // Time display - FIXED: Use timeAgo property
+                  // Time display
                   Text(
                     complaint.timeAgo,
                     style: TextStyle(fontSize: 12, color: Colors.grey[500]),

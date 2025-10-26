@@ -11,7 +11,12 @@ import 'screens/profile_screen.dart';
 import 'screens/all_complaints_screen.dart';
 import 'screens/complaint_details_screen.dart';
 import 'services/firebase_config.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+//import 'generated/l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+//import 'package:public_complaint_app/generated/app_localizations.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';  
+import 'package:public_complaint_app/generated/app_localizations.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -93,6 +98,6 @@ class AuthWrapper extends StatelessWidget {
     // ✅ Ensure login redirection is stable
     return authService.user != null
         ? const DashboardScreen()
-        : const LoginScreen();
+        : LoginScreen();
   }
 }

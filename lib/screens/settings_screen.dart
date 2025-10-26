@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+//import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:public_complaint_app/generated/app_localizations.dart';
+//import '../../l10n/app_localizations.dart';  // For files in screens/
 import '../services/auth_service.dart';
 import '../services/language_service.dart';
 import 'language_selection_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'edit_profile_screen.dart';
+
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +30,9 @@ class SettingsScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         children: [
           // Account Section
-          const Text(
-            'Account',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Text(
+            l10n.account,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           
@@ -36,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.person),
-                  title: const Text('Edit Profile'),
+                  title: Text(l10n.editProfile),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     Navigator.push(
@@ -48,18 +53,18 @@ class SettingsScreen extends StatelessWidget {
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.lock),
-                  title: const Text('Change Password'),
+                  title: Text(l10n.changePassword),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Change password feature coming soon!')),
+                      SnackBar(content: Text(l10n.comingSoon)),
                     );
                   },
                 ),
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.delete, color: Colors.red),
-                  title: const Text('Delete Account', style: TextStyle(color: Colors.red)),
+                  title: Text(l10n.deleteAccount, style: const TextStyle(color: Colors.red)),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     _showDeleteAccountDialog(context);
@@ -72,9 +77,9 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 24),
           
           // App Section
-          const Text(
-            'App',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Text(
+            l10n.app,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           
@@ -83,12 +88,12 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.notifications),
-                  title: const Text('Notifications'),
+                  title: Text(l10n.notifications),
                   trailing: Switch(
                     value: true,
                     onChanged: (value) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Notifications ${value ? 'enabled' : 'disabled'}')),
+                        SnackBar(content: Text('${l10n.notifications} ${value ? l10n.enabled : l10n.disabled}')),
                       );
                     },
                   ),
@@ -96,12 +101,12 @@ class SettingsScreen extends StatelessWidget {
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.location_on),
-                  title: const Text('Location Services'),
+                  title: Text(l10n.locationServices),
                   trailing: Switch(
                     value: true,
                     onChanged: (value) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Location services ${value ? 'enabled' : 'disabled'}')),
+                        SnackBar(content: Text('${l10n.locationServices} ${value ? l10n.enabled : l10n.disabled}')),
                       );
                     },
                   ),
@@ -127,7 +132,7 @@ class SettingsScreen extends StatelessWidget {
                     value: false,
                     onChanged: (value) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('${l10n.darkMode} feature coming soon!')),
+                        SnackBar(content: Text('${l10n.darkMode} ${l10n.comingSoon}')),
                       );
                     },
                   ),
@@ -139,9 +144,9 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(height: 24),
           
           // Support Section
-          const Text(
-            'Support',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Text(
+            l10n.support,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
           
@@ -150,18 +155,18 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 ListTile(
                   leading: const Icon(Icons.help),
-                  title: const Text('Help & Support'),
+                  title: Text(l10n.helpSupport),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Help & Support coming soon!')),
+                      SnackBar(content: Text(l10n.comingSoon)),
                     );
                   },
                 ),
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.info),
-                  title: const Text('About'),
+                  title: Text(l10n.about),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     _showAboutDialog(context);
@@ -170,7 +175,7 @@ class SettingsScreen extends StatelessWidget {
                 const Divider(height: 1),
                 ListTile(
                   leading: const Icon(Icons.logout, color: Colors.red),
-                  title: const Text('Logout', style: TextStyle(color: Colors.red)),
+                  title: Text(l10n.logout, style: const TextStyle(color: Colors.red)),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     _showLogoutDialog(context);
@@ -184,69 +189,76 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
+
   void _showDeleteAccountDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Account'),
-        content: const Text(
-          'Are you sure you want to delete your account? This action cannot be undone and all your complaints will be permanently deleted.',
-        ),
+        title: Text(l10n.deleteAccount),
+        content: Text(l10n.deleteAccountConfirmation),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Delete account feature coming soon!')),
+                SnackBar(content: Text(l10n.comingSoon)),
               );
             },
-            child: const Text('Delete', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.delete, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),
     );
   }
 
+
   void _showAboutDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('About'),
-        content: const Column(
+        title: Text(l10n.about),
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Public Complaint App'),
-            SizedBox(height: 8),
-            Text('Version: 1.0.0'),
-            SizedBox(height: 8),
-            Text('A platform for citizens to file and track public complaints.'),
+            Text(l10n.appTitle),
+            const SizedBox(height: 8),
+            const Text('Version: 1.0.0'),
+            const SizedBox(height: 8),
+            Text(l10n.appDescription),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text(l10n.close),
           ),
         ],
       ),
     );
   }
 
+
   void _showLogoutDialog(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout?'),
+        title: Text(l10n.logout),
+        content: Text(l10n.logoutConfirmation),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: Text(l10n.cancel),
           ),
           TextButton(
             onPressed: () async {
@@ -254,7 +266,7 @@ class SettingsScreen extends StatelessWidget {
               final authService = Provider.of<AuthService>(context, listen: false);
               await authService.signOut();
             },
-            child: const Text('Logout', style: TextStyle(color: Colors.red)),
+            child: Text(l10n.logout, style: const TextStyle(color: Colors.red)),
           ),
         ],
       ),

@@ -120,7 +120,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noComplaintsYet => 'Aún no hay quejas';
 
   @override
-  String get startByFilingFirstComplaint => 'Comience presentando su primera queja para ayudar a mejorar su comunidad';
+  String get startByFilingFirstComplaint =>
+      'Comience presentando su primera queja para ayudar a mejorar su comunidad';
 
   @override
   String get fileYourFirstComplaint => 'Presente Su Primera Queja';
@@ -190,4 +191,101 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get arabic => 'العربية';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get recentComplaints => 'Here are your recent complaints';
+
+  @override
+  String get quickActions => 'Quick Actions';
+
+  @override
+  String get errorLoadingComplaints => 'Error loading complaints';
+
+  @override
+  String get tryAgain => 'Try Again';
+
+  @override
+  String get noComplaints => 'No complaints yet';
+
+  @override
+  String get noComplaintsDesc =>
+      'Start by filing your first complaint to help improve your community';
+
+  @override
+  String get fileFirstComplaint => 'File Your First Complaint';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get enabled => 'enabled';
+
+  @override
+  String get disabled => 'disabled';
+
+  @override
+  String get support => 'Support';
+
+  @override
+  String get close => 'Close';
+
+  @override
+  String get comingSoon => 'Coming soon!';
+
+  @override
+  String get deleteAccountConfirmation =>
+      'Are you sure you want to delete your account? This action cannot be undone and all your complaints will be permanently deleted.';
+
+  @override
+  String get appDescription =>
+      'A platform for citizens to file and track public complaints.';
+
+  @override
+  String get logoutConfirmation => 'Are you sure you want to logout?';
+
+  @override
+  String get complaintDetails => 'Complaint Details';
+
+  @override
+  String get editComplaint => 'Edit Complaint';
+
+  @override
+  String get deleteComplaint => 'Delete Complaint';
+
+  @override
+  String get attachedPhoto => 'Attached Photo';
+
+  @override
+  String get failedToLoadImage => 'Failed to load image';
+
+  @override
+  String get complaintInformation => 'Complaint Information';
+
+  @override
+  String get filedBy => 'Filed by';
+
+  @override
+  String get filedOn => 'Filed on';
+
+  @override
+  String get lastUpdated => 'Last updated';
+
+  @override
+  String get complaintId => 'Complaint ID';
+
+  @override
+  String get deleteComplaintConfirmation =>
+      'Are you sure you want to delete this complaint? This action cannot be undone.';
+
+  @override
+  String get complaintDeletedSuccess => 'Complaint deleted successfully';
+
+  @override
+  String get failedToDelete => 'Failed to delete complaint';
+
+  @override
+  String get app => 'App';
 }

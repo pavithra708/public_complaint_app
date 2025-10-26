@@ -21,7 +21,7 @@ import 'app_localizations_hi.dart';
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'l10n/app_localizations.dart';
+/// import 'generated/app_localizations.dart';
 ///
 /// return MaterialApp(
 ///   localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -65,7 +65,8 @@ import 'app_localizations_hi.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -73,7 +74,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -85,7 +87,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -466,9 +469,196 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'العربية'**
   String get arabic;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @recentComplaints.
+  ///
+  /// In en, this message translates to:
+  /// **'Here are your recent complaints'**
+  String get recentComplaints;
+
+  /// No description provided for @quickActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick Actions'**
+  String get quickActions;
+
+  /// No description provided for @errorLoadingComplaints.
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading complaints'**
+  String get errorLoadingComplaints;
+
+  /// No description provided for @tryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// No description provided for @noComplaints.
+  ///
+  /// In en, this message translates to:
+  /// **'No complaints yet'**
+  String get noComplaints;
+
+  /// No description provided for @noComplaintsDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Start by filing your first complaint to help improve your community'**
+  String get noComplaintsDesc;
+
+  /// No description provided for @fileFirstComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'File Your First Complaint'**
+  String get fileFirstComplaint;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'enabled'**
+  String get enabled;
+
+  /// No description provided for @disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'disabled'**
+  String get disabled;
+
+  /// No description provided for @support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get support;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get close;
+
+  /// No description provided for @comingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming soon!'**
+  String get comingSoon;
+
+  /// No description provided for @deleteAccountConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete your account? This action cannot be undone and all your complaints will be permanently deleted.'**
+  String get deleteAccountConfirmation;
+
+  /// No description provided for @appDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'A platform for citizens to file and track public complaints.'**
+  String get appDescription;
+
+  /// No description provided for @logoutConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirmation;
+
+  /// No description provided for @complaintDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint Details'**
+  String get complaintDetails;
+
+  /// No description provided for @editComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Complaint'**
+  String get editComplaint;
+
+  /// No description provided for @deleteComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Complaint'**
+  String get deleteComplaint;
+
+  /// No description provided for @attachedPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Attached Photo'**
+  String get attachedPhoto;
+
+  /// No description provided for @failedToLoadImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to load image'**
+  String get failedToLoadImage;
+
+  /// No description provided for @complaintInformation.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint Information'**
+  String get complaintInformation;
+
+  /// No description provided for @filedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Filed by'**
+  String get filedBy;
+
+  /// No description provided for @filedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Filed on'**
+  String get filedOn;
+
+  /// No description provided for @lastUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Last updated'**
+  String get lastUpdated;
+
+  /// No description provided for @complaintId.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint ID'**
+  String get complaintId;
+
+  /// No description provided for @deleteComplaintConfirmation.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete this complaint? This action cannot be undone.'**
+  String get deleteComplaintConfirmation;
+
+  /// No description provided for @complaintDeletedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint deleted successfully'**
+  String get complaintDeletedSuccess;
+
+  /// No description provided for @failedToDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to delete complaint'**
+  String get failedToDelete;
+
+  /// No description provided for @app.
+  ///
+  /// In en, this message translates to:
+  /// **'App'**
+  String get app;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -477,28 +667,31 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'es', 'fr', 'hi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en', 'es', 'fr', 'hi'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return AppLocalizationsAr();
-    case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
-    case 'fr': return AppLocalizationsFr();
-    case 'hi': return AppLocalizationsHi();
+    case 'ar':
+      return AppLocalizationsAr();
+    case 'en':
+      return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'fr':
+      return AppLocalizationsFr();
+    case 'hi':
+      return AppLocalizationsHi();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }
