@@ -7,9 +7,10 @@ class Complaint {
   final String description;
   final String category;
   final String status;
-  final String userId;
-  final String userEmail;
+  final String? userId;
+  final String? userEmail;
   final String? userName;
+  final bool isAnonymous;
   final DateTime createdAt;
   final DateTime? updatedAt;
   final String? imageUrl;
@@ -23,9 +24,10 @@ class Complaint {
     required this.description,
     required this.category,
     this.status = 'Pending',
-    required this.userId,
-    required this.userEmail,
+    this.userId,
+    this.userEmail,
     this.userName,
+    this.isAnonymous = false,
     required this.createdAt,
     this.updatedAt,
     this.imageUrl,
@@ -44,6 +46,7 @@ class Complaint {
       'userId': userId,
       'userEmail': userEmail,
       'userName': userName,
+      'isAnonymous': isAnonymous,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'updatedAt': updatedAt?.millisecondsSinceEpoch,
       'imageUrl': imageUrl,
@@ -84,9 +87,10 @@ class Complaint {
       description: map['description']?.toString() ?? '',
       category: map['category']?.toString() ?? 'General',
       status: map['status']?.toString() ?? 'Pending',
-      userId: map['userId']?.toString() ?? '',
-      userEmail: map['userEmail']?.toString() ?? '',
+      userId: map['userId']?.toString(),
+      userEmail: map['userEmail']?.toString(),
       userName: map['userName']?.toString(),
+      isAnonymous: map['isAnonymous'] == true,
       createdAt: parseCreatedAt(map['createdAt']),
       updatedAt: parseUpdatedAt(map['updatedAt']),
       imageUrl: map['imageUrl']?.toString(),
@@ -106,6 +110,7 @@ class Complaint {
     String? userId,
     String? userEmail,
     String? userName,
+    bool? isAnonymous,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? imageUrl,
@@ -122,6 +127,7 @@ class Complaint {
       userId: userId ?? this.userId,
       userEmail: userEmail ?? this.userEmail,
       userName: userName ?? this.userName,
+      isAnonymous: isAnonymous ?? this.isAnonymous,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
       imageUrl: imageUrl ?? this.imageUrl,
@@ -130,6 +136,12 @@ class Complaint {
       longitude: longitude ?? this.longitude,
     );
   }
+
+  // Get display name for user (shows "Anonymous" if anonymous)
+  String get displayUserName => isAnonymous ? 'Anonymous' : (userName ?? userEmail ?? 'Unknown User');
+  
+  // Get display email (shows "Anonymous" if anonymous)
+  String get displayUserEmail => isAnonymous ? 'Anonymous' : (userEmail ?? 'No email');
 
   // Helper method to check if complaint has location
   bool get hasLocation => latitude != null && longitude != null;

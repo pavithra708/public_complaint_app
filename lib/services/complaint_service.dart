@@ -9,7 +9,7 @@ class ComplaintService {
   // Reference to complaints collection
   CollectionReference get _complaintsRef => _firestore.collection('complaints');
 
-  // Create a new complaint
+  // Create a new complaint (authenticated user)
   Future<String> createComplaint(Complaint complaint) async {
     try {
       print('Creating complaint with data: ${complaint.toMap()}');
@@ -19,6 +19,26 @@ class ComplaintService {
     } catch (e) {
       print('Error creating complaint: $e');
       throw Exception('Failed to create complaint: $e');
+    }
+  }
+
+  // Create an anonymous complaint (no authentication required)
+  Future<String> createAnonymousComplaint(Complaint complaint) async {
+    try {
+      // Ensure it's marked as anonymous and remove any user identification
+      final anonymousComplaint = complaint.copyWith(
+        isAnonymous: true,
+        userId: null,
+        userEmail: null,
+        userName: null,
+      );
+      print('Creating anonymous complaint with data: ${anonymousComplaint.toMap()}');
+      final docRef = await _complaintsRef.add(anonymousComplaint.toMap());
+      print('Anonymous complaint created successfully with ID: ${docRef.id}');
+      return docRef.id;
+    } catch (e) {
+      print('Error creating anonymous complaint: $e');
+      throw Exception('Failed to create anonymous complaint: $e');
     }
   }
 

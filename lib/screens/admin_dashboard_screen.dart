@@ -5,6 +5,7 @@ import '../models/complaint_model.dart';
 import '../services/auth_service.dart';
 import '../services/complaint_service.dart';
 import 'complaint_details_screen.dart';
+import 'package:public_complaint_app/generated/app_localizations.dart';
 
 class AdminDashboardScreen extends StatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -119,7 +120,7 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                           itemCount: filteredComplaints.length,
                           itemBuilder: (context, index) {
                             final complaint = filteredComplaints[index];
-                            return _buildComplaintAdminCard(complaint);
+                            return _buildComplaintAdminCard(context, complaint);
                           },
                         ),
                 ),
@@ -247,7 +248,8 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
     );
   }
 
-  Widget _buildComplaintAdminCard(Complaint complaint) {
+  Widget _buildComplaintAdminCard(BuildContext context, Complaint complaint) {
+    final l10n = AppLocalizations.of(context)!;
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 8),
       child: Padding(
@@ -289,9 +291,32 @@ class _AdminDashboardScreenState extends State<AdminDashboardScreen> {
                         style: TextStyle(color: Colors.grey[600]),
                       ),
                       const SizedBox(height: 4),
-                      Text(
-                        'Filed by: ${complaint.userName ?? complaint.userEmail}',
-                        style: const TextStyle(fontSize: 13),
+                      Row(
+                        children: [
+                          Text(
+                            'Filed by: ${complaint.displayUserName}',
+                            style: const TextStyle(fontSize: 13),
+                          ),
+                          if (complaint.isAnonymous) ...[
+                            const SizedBox(width: 8),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                color: Colors.orange.withOpacity(0.2),
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: Colors.orange),
+                              ),
+                              child: Text(
+                                l10n.anonymous,
+                                style: const TextStyle(
+                                  fontSize: 10,
+                                  color: Colors.orange,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ],
                       ),
                     ],
                   ),

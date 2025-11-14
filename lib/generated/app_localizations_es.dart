@@ -193,6 +193,15 @@ class AppLocalizationsEs extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
+  String get kannada => 'ಕನ್ನಡ';
+
+  @override
+  String get telugu => 'తెలుగు';
+
+  @override
+  String get tamil => 'தமிழ்';
+
+  @override
   String get user => 'User';
 
   @override
@@ -265,7 +274,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get complaintInformation => 'Complaint Information';
 
   @override
-  String get filedBy => 'Filed by';
+  String get filedBy => 'Presentado por';
 
   @override
   String get filedOn => 'Filed on';
@@ -288,4 +297,106 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get app => 'App';
+
+  @override
+  String get fileAnonymousComplaint => 'Presentar Queja Anónima';
+
+  @override
+  String get anonymousComplaint => 'Queja Anónima';
+
+  @override
+  String get anonymous => 'Anónimo';
+
+  @override
+  String get noLoginRequired => 'No se requiere inicio de sesión';
+
+  @override
+  String get yourIdentityProtected => 'Su identidad está protegida';
+
+  @override
+  String get fileAnonymousComplaintDesc =>
+      'No se requiere inicio de sesión • Su identidad está protegida';
+
+  @override
+  String get yourIdentityWillBeProtected => 'Su identidad estará protegida';
+
+  @override
+  String get anonymousComplaintInfo =>
+      'Esta queja se presentará de forma anónima. No se almacenará información personal.';
+
+  @override
+  String get submitAnonymousComplaint => 'Enviar Queja Anónima';
+
+  @override
+  String get anonymousComplaintFiledSuccess =>
+      '¡Queja anónima presentada exitosamente! Su identidad está protegida.';
+
+  @override
+  String get complaintTitle => 'Título de la Queja';
+
+  @override
+  String get complaintTitleHint =>
+      'ej., Preocupación de seguridad en área pública';
+
+  @override
+  String get descriptionHint => 'Describa el problema en detalle...';
+
+  @override
+  String get addPhotoOptional => 'Agregar Foto (Opcional)';
+
+  @override
+  String get locationOptional => 'Ubicación (Opcional)';
+
+  @override
+  String get getCurrentLocation => 'Obtener Ubicación Actual';
+
+  @override
+  String get gettingLocation => 'Obteniendo ubicación...';
+
+  @override
+  String get remove => 'Eliminar';
+
+  @override
+  String get retake => 'Volver a Tomar';
+
+  @override
+  String get inProgress => 'En Progreso';
+
+  @override
+  String get rejected => 'Rechazado';
+
+  @override
+  String get markResolved => 'Marcar como Resuelto';
+
+  @override
+  String get updateStatus => 'Actualizar estado';
+
+  @override
+  String get createAccount => 'Crear Cuenta';
+
+  @override
+  String get adminLogin => 'Inicio de Sesión de Administrador';
+
+  @override
+  String get reportIssuesInCommunity => 'Reportar problemas en su comunidad';
+
+  @override
+  String get pleaseEnterEmail => 'Por favor ingrese el correo electrónico';
+
+  @override
+  String get pleaseEnterValidEmail =>
+      'Por favor ingrese un correo electrónico válido';
+
+  @override
+  String get pleaseEnterPassword => 'Por favor ingrese la contraseña';
+
+  @override
+  String get passwordMustBe6Characters =>
+      'La contraseña debe tener 6+ caracteres';
+
+  @override
+  String get loginFailed => 'Error al iniciar sesión';
+
+  @override
+  String get or => 'O';
 }

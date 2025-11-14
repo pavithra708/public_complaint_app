@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /complaints/{complaintId} {
+      // Allow read if:
+      // - User is authenticated and owns the complaint, OR
+      // - User is an admin, OR
+      // - Complaint is anonymous (anyone can read for transparency)
+      allow read: if request.auth != null &&
+        (
+          request.auth.uid == resource.data.userId ||
+          request.auth.token.email in ['admin@gmail.com'] ||
+          resource.data.isAnonymous == true
+        );
+
+      // Allow create if:
+      // - User is authenticated and creating their own complaint, OR
+      // - Creating an anonymous complaint (no auth required - allows unauthenticated users)
+      allow create: if 
+        (
+          // Authenticated user creating their own complaint
+          (request.auth != null && 
+           request.auth.uid == request.resource.data.userId &&
+           request.resource.data.isAnonymous != true) ||
+          // Anonymous complaint (no auth required) - allows unauthenticated users
+          (request.auth == null &&
+           request.resource.data.isAnonymous == true &&
+           request.resource.data.userId == null &&
+           request.resource.data.userEmail == null)
+        );
+
+      // Allow update/delete if:
+      // - User owns the complaint, OR
+      // - User is an admin
+      allow update, delete: if request.auth != null &&
+        (
+          request.auth.uid == resource.data.userId ||
+          request.auth.token.email in ['admin@gmail.com']
+        );
+    }
+  }
+}
+

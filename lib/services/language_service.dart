@@ -15,6 +15,9 @@ class LanguageService extends ChangeNotifier {
     Locale('es', ''), // Spanish
     Locale('fr', ''), // French
     Locale('ar', ''), // Arabic
+    Locale('kn', ''), // Kannada
+    Locale('te', ''), // Telugu
+    Locale('ta', ''), // Tamil
   ];
   
   // Language names for display
@@ -24,6 +27,9 @@ class LanguageService extends ChangeNotifier {
     'es': 'Español',
     'fr': 'Français',
     'ar': 'العربية',
+    'kn': 'ಕನ್ನಡ',
+    'te': 'తెలుగు',
+    'ta': 'தமிழ்',
   };
   
   LanguageService() {

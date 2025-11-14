@@ -193,6 +193,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
+  String get kannada => 'ಕನ್ನಡ';
+
+  @override
+  String get telugu => 'తెలుగు';
+
+  @override
+  String get tamil => 'தமிழ்';
+
+  @override
   String get user => 'User';
 
   @override
@@ -265,7 +274,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get complaintInformation => 'Complaint Information';
 
   @override
-  String get filedBy => 'Filed by';
+  String get filedBy => 'द्वारा दर्ज';
 
   @override
   String get filedOn => 'Filed on';
@@ -288,4 +297,104 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get app => 'App';
+
+  @override
+  String get fileAnonymousComplaint => 'गुमनाम शिकायत दर्ज करें';
+
+  @override
+  String get anonymousComplaint => 'गुमनाम शिकायत';
+
+  @override
+  String get anonymous => 'गुमनाम';
+
+  @override
+  String get noLoginRequired => 'लॉगिन की आवश्यकता नहीं';
+
+  @override
+  String get yourIdentityProtected => 'आपकी पहचान सुरक्षित';
+
+  @override
+  String get fileAnonymousComplaintDesc =>
+      'लॉगिन की आवश्यकता नहीं • आपकी पहचान सुरक्षित';
+
+  @override
+  String get yourIdentityWillBeProtected => 'आपकी पहचान सुरक्षित रहेगी';
+
+  @override
+  String get anonymousComplaintInfo =>
+      'यह शिकायत गुमनाम रूप से दर्ज की जाएगी। कोई व्यक्तिगत जानकारी संग्रहीत नहीं की जाएगी।';
+
+  @override
+  String get submitAnonymousComplaint => 'गुमनाम शिकायत जमा करें';
+
+  @override
+  String get anonymousComplaintFiledSuccess =>
+      'गुमनाम शिकायत सफलतापूर्वक दर्ज हो गई! आपकी पहचान सुरक्षित है।';
+
+  @override
+  String get complaintTitle => 'शिकायत का शीर्षक';
+
+  @override
+  String get complaintTitleHint => 'उदाहरण: सार्वजनिक स्थान पर सुरक्षा चिंता';
+
+  @override
+  String get descriptionHint => 'समस्या का विस्तार से वर्णन करें...';
+
+  @override
+  String get addPhotoOptional => 'फोटो जोड़ें (वैकल्पिक)';
+
+  @override
+  String get locationOptional => 'स्थान (वैकल्पिक)';
+
+  @override
+  String get getCurrentLocation => 'वर्तमान स्थान प्राप्त करें';
+
+  @override
+  String get gettingLocation => 'स्थान प्राप्त कर रहे हैं...';
+
+  @override
+  String get remove => 'हटाएं';
+
+  @override
+  String get retake => 'फिर से लें';
+
+  @override
+  String get inProgress => 'प्रगति में';
+
+  @override
+  String get rejected => 'अस्वीकृत';
+
+  @override
+  String get markResolved => 'हल के रूप में चिह्नित करें';
+
+  @override
+  String get updateStatus => 'स्थिति अपडेट करें';
+
+  @override
+  String get createAccount => 'खाता बनाएं';
+
+  @override
+  String get adminLogin => 'एडमिन लॉगिन';
+
+  @override
+  String get reportIssuesInCommunity =>
+      'अपने समुदाय में समस्याओं की रिपोर्ट करें';
+
+  @override
+  String get pleaseEnterEmail => 'कृपया ईमेल दर्ज करें';
+
+  @override
+  String get pleaseEnterValidEmail => 'कृपया वैध ईमेल दर्ज करें';
+
+  @override
+  String get pleaseEnterPassword => 'कृपया पासवर्ड दर्ज करें';
+
+  @override
+  String get passwordMustBe6Characters => 'पासवर्ड 6+ अक्षरों का होना चाहिए';
+
+  @override
+  String get loginFailed => 'लॉगिन विफल';
+
+  @override
+  String get or => 'या';
 }

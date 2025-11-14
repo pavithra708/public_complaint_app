@@ -193,6 +193,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
+  String get kannada => 'ಕನ್ನಡ';
+
+  @override
+  String get telugu => 'తెలుగు';
+
+  @override
+  String get tamil => 'தமிழ்';
+
+  @override
   String get user => 'User';
 
   @override
@@ -265,7 +274,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get complaintInformation => 'Complaint Information';
 
   @override
-  String get filedBy => 'Filed by';
+  String get filedBy => 'مقدم من';
 
   @override
   String get filedOn => 'Filed on';
@@ -288,4 +297,103 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get app => 'App';
+
+  @override
+  String get fileAnonymousComplaint => 'تقديم شكوى مجهولة';
+
+  @override
+  String get anonymousComplaint => 'شكوى مجهولة';
+
+  @override
+  String get anonymous => 'مجهول';
+
+  @override
+  String get noLoginRequired => 'لا يتطلب تسجيل الدخول';
+
+  @override
+  String get yourIdentityProtected => 'هويتك محمية';
+
+  @override
+  String get fileAnonymousComplaintDesc =>
+      'لا يتطلب تسجيل الدخول • هويتك محمية';
+
+  @override
+  String get yourIdentityWillBeProtected => 'ستكون هويتك محمية';
+
+  @override
+  String get anonymousComplaintInfo =>
+      'سيتم تقديم هذه الشكوى بشكل مجهول. لن يتم تخزين أي معلومات شخصية.';
+
+  @override
+  String get submitAnonymousComplaint => 'إرسال شكوى مجهولة';
+
+  @override
+  String get anonymousComplaintFiledSuccess =>
+      'تم تقديم الشكوى المجهولة بنجاح! هويتك محمية.';
+
+  @override
+  String get complaintTitle => 'عنوان الشكوى';
+
+  @override
+  String get complaintTitleHint => 'مثال: مخاوف أمنية في منطقة عامة';
+
+  @override
+  String get descriptionHint => 'اوصف المشكلة بالتفصيل...';
+
+  @override
+  String get addPhotoOptional => 'إضافة صورة (اختياري)';
+
+  @override
+  String get locationOptional => 'الموقع (اختياري)';
+
+  @override
+  String get getCurrentLocation => 'الحصول على الموقع الحالي';
+
+  @override
+  String get gettingLocation => 'جاري الحصول على الموقع...';
+
+  @override
+  String get remove => 'إزالة';
+
+  @override
+  String get retake => 'إعادة التقاط';
+
+  @override
+  String get inProgress => 'قيد التنفيذ';
+
+  @override
+  String get rejected => 'مرفوض';
+
+  @override
+  String get markResolved => 'وضع علامة كمحلول';
+
+  @override
+  String get updateStatus => 'تحديث الحالة';
+
+  @override
+  String get createAccount => 'إنشاء حساب';
+
+  @override
+  String get adminLogin => 'تسجيل دخول المسؤول';
+
+  @override
+  String get reportIssuesInCommunity => 'الإبلاغ عن المشاكل في مجتمعك';
+
+  @override
+  String get pleaseEnterEmail => 'يرجى إدخال البريد الإلكتروني';
+
+  @override
+  String get pleaseEnterValidEmail => 'يرجى إدخال بريد إلكتروني صالح';
+
+  @override
+  String get pleaseEnterPassword => 'يرجى إدخال كلمة المرور';
+
+  @override
+  String get passwordMustBe6Characters => 'يجب أن تكون كلمة المرور 6+ أحرف';
+
+  @override
+  String get loginFailed => 'فشل تسجيل الدخول';
+
+  @override
+  String get or => 'أو';
 }

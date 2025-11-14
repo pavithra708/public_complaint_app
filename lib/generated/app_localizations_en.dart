@@ -193,6 +193,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
+  String get kannada => 'ಕನ್ನಡ';
+
+  @override
+  String get telugu => 'తెలుగు';
+
+  @override
+  String get tamil => 'தமிழ்';
+
+  @override
   String get user => 'User';
 
   @override
@@ -288,4 +297,103 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get app => 'App';
+
+  @override
+  String get fileAnonymousComplaint => 'File Anonymous Complaint';
+
+  @override
+  String get anonymousComplaint => 'Anonymous Complaint';
+
+  @override
+  String get anonymous => 'Anonymous';
+
+  @override
+  String get noLoginRequired => 'No login required';
+
+  @override
+  String get yourIdentityProtected => 'Your identity protected';
+
+  @override
+  String get fileAnonymousComplaintDesc =>
+      'No login required • Your identity protected';
+
+  @override
+  String get yourIdentityWillBeProtected => 'Your identity will be protected';
+
+  @override
+  String get anonymousComplaintInfo =>
+      'This complaint will be filed anonymously. No personal information will be stored.';
+
+  @override
+  String get submitAnonymousComplaint => 'Submit Anonymous Complaint';
+
+  @override
+  String get anonymousComplaintFiledSuccess =>
+      'Anonymous complaint filed successfully! Your identity is protected.';
+
+  @override
+  String get complaintTitle => 'Complaint Title';
+
+  @override
+  String get complaintTitleHint => 'e.g., Safety concern in public area';
+
+  @override
+  String get descriptionHint => 'Describe the issue in detail...';
+
+  @override
+  String get addPhotoOptional => 'Add Photo (Optional)';
+
+  @override
+  String get locationOptional => 'Location (Optional)';
+
+  @override
+  String get getCurrentLocation => 'Get Current Location';
+
+  @override
+  String get gettingLocation => 'Getting location...';
+
+  @override
+  String get remove => 'Remove';
+
+  @override
+  String get retake => 'Retake';
+
+  @override
+  String get inProgress => 'In Progress';
+
+  @override
+  String get rejected => 'Rejected';
+
+  @override
+  String get markResolved => 'Mark Resolved';
+
+  @override
+  String get updateStatus => 'Update status';
+
+  @override
+  String get createAccount => 'Create Account';
+
+  @override
+  String get adminLogin => 'Admin Login';
+
+  @override
+  String get reportIssuesInCommunity => 'Report issues in your community';
+
+  @override
+  String get pleaseEnterEmail => 'Please enter email';
+
+  @override
+  String get pleaseEnterValidEmail => 'Please enter valid email';
+
+  @override
+  String get pleaseEnterPassword => 'Please enter password';
+
+  @override
+  String get passwordMustBe6Characters => 'Password must be 6+ characters';
+
+  @override
+  String get loginFailed => 'Login failed';
+
+  @override
+  String get or => 'OR';
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-//import '../../l10n/app_localizations.dart';  // For files in screens/
 import '../models/complaint_model.dart';
 import '../services/complaint_service.dart';
 import 'package:public_complaint_app/generated/app_localizations.dart';
@@ -308,7 +306,7 @@ class ComplaintDetailsScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            _buildInfoRow(l10n.filedBy, complaint.userName ?? complaint.userEmail),
+            _buildInfoRow(l10n.filedBy, complaint.displayUserName),
             _buildInfoRow(l10n.filedOn, _formatDate(complaint.createdAt)),
             if (complaint.updatedAt != null)
               _buildInfoRow(l10n.lastUpdated, _formatDate(complaint.updatedAt!)),

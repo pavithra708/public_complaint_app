@@ -10,6 +10,9 @@ import 'app_localizations_en.dart';
 import 'app_localizations_es.dart';
 import 'app_localizations_fr.dart';
 import 'app_localizations_hi.dart';
+import 'app_localizations_kn.dart';
+import 'app_localizations_ta.dart';
+import 'app_localizations_te.dart';
 
 // ignore_for_file: type=lint
 
@@ -101,7 +104,10 @@ abstract class AppLocalizations {
     Locale('en'),
     Locale('es'),
     Locale('fr'),
-    Locale('hi')
+    Locale('hi'),
+    Locale('kn'),
+    Locale('ta'),
+    Locale('te')
   ];
 
   /// No description provided for @appTitle.
@@ -470,6 +476,24 @@ abstract class AppLocalizations {
   /// **'العربية'**
   String get arabic;
 
+  /// No description provided for @kannada.
+  ///
+  /// In en, this message translates to:
+  /// **'ಕನ್ನಡ'**
+  String get kannada;
+
+  /// No description provided for @telugu.
+  ///
+  /// In en, this message translates to:
+  /// **'తెలుగు'**
+  String get telugu;
+
+  /// No description provided for @tamil.
+  ///
+  /// In en, this message translates to:
+  /// **'தமிழ்'**
+  String get tamil;
+
   /// No description provided for @user.
   ///
   /// In en, this message translates to:
@@ -655,6 +679,198 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'App'**
   String get app;
+
+  /// No description provided for @fileAnonymousComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'File Anonymous Complaint'**
+  String get fileAnonymousComplaint;
+
+  /// No description provided for @anonymousComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous Complaint'**
+  String get anonymousComplaint;
+
+  /// No description provided for @anonymous.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous'**
+  String get anonymous;
+
+  /// No description provided for @noLoginRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'No login required'**
+  String get noLoginRequired;
+
+  /// No description provided for @yourIdentityProtected.
+  ///
+  /// In en, this message translates to:
+  /// **'Your identity protected'**
+  String get yourIdentityProtected;
+
+  /// No description provided for @fileAnonymousComplaintDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'No login required • Your identity protected'**
+  String get fileAnonymousComplaintDesc;
+
+  /// No description provided for @yourIdentityWillBeProtected.
+  ///
+  /// In en, this message translates to:
+  /// **'Your identity will be protected'**
+  String get yourIdentityWillBeProtected;
+
+  /// No description provided for @anonymousComplaintInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'This complaint will be filed anonymously. No personal information will be stored.'**
+  String get anonymousComplaintInfo;
+
+  /// No description provided for @submitAnonymousComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit Anonymous Complaint'**
+  String get submitAnonymousComplaint;
+
+  /// No description provided for @anonymousComplaintFiledSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous complaint filed successfully! Your identity is protected.'**
+  String get anonymousComplaintFiledSuccess;
+
+  /// No description provided for @complaintTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complaint Title'**
+  String get complaintTitle;
+
+  /// No description provided for @complaintTitleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g., Safety concern in public area'**
+  String get complaintTitleHint;
+
+  /// No description provided for @descriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe the issue in detail...'**
+  String get descriptionHint;
+
+  /// No description provided for @addPhotoOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photo (Optional)'**
+  String get addPhotoOptional;
+
+  /// No description provided for @locationOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Location (Optional)'**
+  String get locationOptional;
+
+  /// No description provided for @getCurrentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Current Location'**
+  String get getCurrentLocation;
+
+  /// No description provided for @gettingLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting location...'**
+  String get gettingLocation;
+
+  /// No description provided for @remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get remove;
+
+  /// No description provided for @retake.
+  ///
+  /// In en, this message translates to:
+  /// **'Retake'**
+  String get retake;
+
+  /// No description provided for @inProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'In Progress'**
+  String get inProgress;
+
+  /// No description provided for @rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get rejected;
+
+  /// No description provided for @markResolved.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark Resolved'**
+  String get markResolved;
+
+  /// No description provided for @updateStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Update status'**
+  String get updateStatus;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Account'**
+  String get createAccount;
+
+  /// No description provided for @adminLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Admin Login'**
+  String get adminLogin;
+
+  /// No description provided for @reportIssuesInCommunity.
+  ///
+  /// In en, this message translates to:
+  /// **'Report issues in your community'**
+  String get reportIssuesInCommunity;
+
+  /// No description provided for @pleaseEnterEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter email'**
+  String get pleaseEnterEmail;
+
+  /// No description provided for @pleaseEnterValidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter valid email'**
+  String get pleaseEnterValidEmail;
+
+  /// No description provided for @pleaseEnterPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter password'**
+  String get pleaseEnterPassword;
+
+  /// No description provided for @passwordMustBe6Characters.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be 6+ characters'**
+  String get passwordMustBe6Characters;
+
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed'**
+  String get loginFailed;
+
+  /// No description provided for @or.
+  ///
+  /// In en, this message translates to:
+  /// **'OR'**
+  String get or;
 }
 
 class _AppLocalizationsDelegate
@@ -667,8 +883,16 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en', 'es', 'fr', 'hi'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+        'ar',
+        'en',
+        'es',
+        'fr',
+        'hi',
+        'kn',
+        'ta',
+        'te'
+      ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -687,6 +911,12 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsFr();
     case 'hi':
       return AppLocalizationsHi();
+    case 'kn':
+      return AppLocalizationsKn();
+    case 'ta':
+      return AppLocalizationsTa();
+    case 'te':
+      return AppLocalizationsTe();
   }
 
   throw FlutterError(
