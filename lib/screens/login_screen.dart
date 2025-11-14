@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/auth_service.dart';
 import 'signup_screen.dart';
+import 'admin_login_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -118,11 +119,28 @@ class _LoginScreenState extends State<LoginScreen> {
                         
                         SizedBox(height: 16),
                         
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpScreen()));
-                          },
-                          child: Text('Create Account'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpScreen()));
+                              },
+                              child: Text('Create Account'),
+                            ),
+                            const SizedBox(width: 8),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const AdminLoginScreen(),
+                                  ),
+                                );
+                              },
+                              child: const Text('Admin Login'),
+                            ),
+                          ],
                         ),
                       ],
                     ),

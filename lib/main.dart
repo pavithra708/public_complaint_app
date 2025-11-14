@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,8 @@ import 'screens/file_complaint_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/all_complaints_screen.dart';
 import 'screens/complaint_details_screen.dart';
+import 'screens/admin_login_screen.dart';
+import 'screens/admin_dashboard_screen.dart';
 import 'services/firebase_config.dart';
 //import 'generated/l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -22,16 +25,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // ✅ Initialize Firebase safely
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-      apiKey: FirebaseConfig.webConfig["apiKey"] ?? '',
-      authDomain: FirebaseConfig.webConfig["authDomain"] ?? '',
-      projectId: FirebaseConfig.webConfig["projectId"] ?? '',
-      storageBucket: FirebaseConfig.webConfig["storageBucket"] ?? '',
-      messagingSenderId: FirebaseConfig.webConfig["messagingSenderId"] ?? '',
-      appId: FirebaseConfig.webConfig["appId"] ?? '',
-    ),
-  );
+  // For mobile, Firebase will use google-services.json automatically
+  // For web, we need to provide options manually
+  if (kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+        apiKey: FirebaseConfig.webConfig["apiKey"] ?? '',
+        authDomain: FirebaseConfig.webConfig["authDomain"] ?? '',
+        projectId: FirebaseConfig.webConfig["projectId"] ?? '',
+        storageBucket: FirebaseConfig.webConfig["storageBucket"] ?? '',
+        messagingSenderId: FirebaseConfig.webConfig["messagingSenderId"] ?? '',
+        appId: FirebaseConfig.webConfig["appId"] ?? '',
+      ),
+    );
+  } else {
+    // Mobile platforms (Android/iOS) will use google-services.json automatically
+    await Firebase.initializeApp();
+  }
 
   runApp(const MyApp());
 }
@@ -72,6 +82,8 @@ class MyApp extends StatelessWidget {
               '/file_complaint': (context) => const FileComplaintScreen(),
               '/profile': (context) => const ProfileScreen(),
               '/all_complaints': (context) => const AllComplaintsScreen(),
+              '/admin_login': (context) => const AdminLoginScreen(),
+              '/admin_dashboard': (context) => const AdminDashboardScreen(),
             },
           );
         },
@@ -96,8 +108,13 @@ class AuthWrapper extends StatelessWidget {
     }
 
     // ✅ Ensure login redirection is stable
-    return authService.user != null
-        ? const DashboardScreen()
-        : LoginScreen();
+    if (authService.user != null) {
+      if (authService.isAdminSession) {
+        return const AdminDashboardScreen();
+      }
+      return const DashboardScreen();
+    }
+
+    return LoginScreen();
   }
 }

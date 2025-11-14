@@ -44,6 +44,18 @@ class ComplaintService {
         });
   }
 
+  // Get all complaints (admin view)
+  Stream<List<Complaint>> getAllComplaints() {
+    return _complaintsRef.snapshots().map((snapshot) {
+      final complaints = snapshot.docs
+          .map((doc) => Complaint.fromMap(doc.id, doc.data() as Map<String, dynamic>))
+          .toList();
+
+      complaints.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return complaints;
+    });
+  }
+
   // Update complaint status
   Future<void> updateComplaintStatus(String complaintId, String newStatus) async {
     try {
